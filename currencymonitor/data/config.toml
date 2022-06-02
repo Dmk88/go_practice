@@ -1,0 +1,4 @@
+[Scylla]
+ConnectionStrings = ["scylladb"]
+Keyspace = "currencymonitor"
+DefaultTTL = 2592000 # secs
