@@ -26,6 +26,10 @@ func (d *Daemon) CheckMonitoring() {
 	for _, monitoring := range monitoringRecords {
 		d.ProcessMonitoring(monitoring)
 	}
+	monitoringRecords = mp.FindByStatus(models.MonitoringStatusError)
+	for _, monitoring := range monitoringRecords {
+		d.ProcessMonitoring(monitoring)
+	}
 }
 
 func (d *Daemon) ProcessMonitoring(monitoring models.Monitoring) {
