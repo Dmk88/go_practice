@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  currencymonitor1:
+    build: currencymonitor/
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - "scylladb"
+
+  currencymonitor2:
+    build: currencymonitor/
+    restart: always
+    ports:
+      - 8081:8080
+    depends_on:
+      - "scylladb"
+
+  scylladb:
+    image: scylladb/scylla
+    restart: always
+    container_name: scylladb
+    command: --broadcast-address 127.0.0.1 --broadcast-rpc-address 127.0.0.1
+    volumes:
+      - /opt/scylladata:/var/lib/scylla
+    ports:
+      - 9042:9042
